@@ -33,11 +33,9 @@
     .flip-section .section-header{text-align:center;margin-bottom:50px;}
 
     .flip-grid{
-      display:grid; grid-template-columns:repeat(3,1fr);
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
       gap:28px; max-width:960px; margin:0 auto;
     }
-    @media(max-width:768px){.flip-grid{grid-template-columns:1fr 1fr;}}
-    @media(max-width:480px){.flip-grid{grid-template-columns:1fr;}}
 
     .flip-card{height:220px;perspective:1000px;cursor:pointer;}
     .flip-inner{
@@ -112,10 +110,13 @@
     .tips-section .section-header{text-align:center;margin-bottom:50px;}
 
     .tips-grid{
-      display:grid; grid-template-columns:repeat(2,1fr);
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
       gap:22px; max-width:860px; margin:0 auto;
     }
-    @media(max-width:640px){.tips-grid{grid-template-columns:1fr;}}
+    @media(max-width:640px){
+      .tips-grid{grid-template-columns:1fr;}
+      .p4-hero, .flip-section, .future-section, .tips-section, .spotlight { padding: 40px 20px; }
+    }
 
     .tip-card{
       background:var(--glass); border:1px solid var(--glass-b);
