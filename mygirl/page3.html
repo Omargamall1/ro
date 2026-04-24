@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Why I Love You 💖 — Page 3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    body {
+      background:
+        radial-gradient(ellipse at 60% 10%, rgba(255,77,126,0.18) 0%, transparent 50%),
+        radial-gradient(ellipse at 10% 90%, rgba(199,125,255,0.15) 0%, transparent 50%),
+        var(--dark);
+    }
+
+    /* ===== SCRATCH CARD SURPRISE ===== */
+    .scratch-section {
+      min-height:100vh; display:flex; align-items:center; justify-content:center;
+      flex-direction:column; text-align:center; padding:60px 20px;
+      position:relative; z-index:5;
+    }
+    .scratch-wrap { position:relative; display:inline-block; margin:40px auto; }
+    .scratch-reveal {
+      width:340px; height:200px; border-radius:20px;
+      background:linear-gradient(135deg,#1a0530,#3d0c2e);
+      border:2px solid rgba(255,77,126,0.4);
+      display:flex; align-items:center; justify-content:center;
+      flex-direction:column; gap:12px; padding:20px;
+    }
+    .scratch-reveal p { font-family:var(--font-script); font-size:1.3rem; color:var(--pink); line-height:1.6; }
+    #scratchCanvas {
+      position:absolute; top:0; left:0;
+      border-radius:20px; cursor:crosshair;
+      touch-action:none;
+    }
+    .scratch-hint { color:var(--muted); font-size:.9rem; margin-top:10px; animation:pulse-text 2s infinite; }
+    @keyframes pulse-text{0%,100%{opacity:.5}50%{opacity:1}}
+
+    /* ===== REASONS GRID ===== */
+    .reasons-section { padding:100px 40px; position:relative; z-index:5; }
+    .reasons-section .section-header{text-align:center;margin-bottom:60px;}
+
+    .reasons-bento {
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      gap:20px; max-width:1000px; margin:0 auto;
+    }
+    @media(max-width:768px){.reasons-bento{grid-template-columns:1fr 1fr;}}
+    @media(max-width:480px){.reasons-bento{grid-template-columns:1fr;}}
+
+    .r-card {
+      background:var(--glass);
+      border:1px solid var(--glass-b);
+      border-radius:22px; padding:32px 24px;
+      text-align:center; position:relative; overflow:hidden;
+      transition:all 0.35s ease; cursor:default;
+    }
+    .r-card:nth-child(1){grid-column:span 2;}
+    .r-card::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(circle at 50% 0%, rgba(255,77,126,0.12), transparent 70%);
+      opacity:0; transition:opacity 0.3s;
+    }
+    .r-card:hover::before{opacity:1;}
+    .r-card:hover{transform:translateY(-8px); border-color:var(--rose); box-shadow:0 20px 50px rgba(255,77,126,0.25);}
+    .r-icon{font-size:2.8rem;margin-bottom:14px;display:block;}
+    .r-num{position:absolute;top:14px;right:18px;font-size:3.5rem;font-weight:900;color:rgba(255,77,126,0.07);font-family:var(--font-head);}
+    .r-card h3{font-family:var(--font-head);font-size:1.25rem;color:var(--pink);margin-bottom:10px;}
+    .r-card p{color:var(--muted);line-height:1.7;font-size:.95rem;}
+
+    /* ===== LOVE LETTER ===== */
+    .letter-section{padding:100px 40px; position:relative;z-index:5;}
+    .letter-wrap{max-width:680px;margin:0 auto;}
+    .letter-card{
+      background:linear-gradient(135deg,rgba(255,77,126,0.06),rgba(199,125,255,0.06));
+      border:1px solid var(--glass-b); border-radius:28px;
+      padding:56px 48px; position:relative;
+      box-shadow:0 0 80px rgba(255,77,126,0.12);
+    }
+    @media(max-width:600px){.letter-card{padding:36px 24px;}}
+    .letter-stamp{position:absolute;top:-22px;right:48px;font-size:2.8rem;animation:heartbeat 1.5s ease-in-out infinite;}
+    @keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.2)}30%{transform:scale(1)}45%{transform:scale(1.1)}}
+    .letter-card p{font-size:1.05rem;line-height:2;color:var(--muted);margin-bottom:18px;}
+    .l-open{color:var(--pink)!important;font-size:1.2rem!important;font-weight:600;}
+    .l-close{color:var(--gold)!important;font-weight:600;}
+    .l-sig{font-family:var(--font-script);font-size:2rem;color:var(--pink);text-align:left;margin-top:10px;}
+  </style>
+</head>
+<body>
+  <canvas id="particleCanvas"></canvas>
+  <button class="music-orb" id="musicOrb" onclick="toggleMusic()">♪</button>
+  <nav class="page-nav">
+    <a href="index.html" class="nav-dot" title="Welcome"></a>
+    <a href="page2.html" class="nav-dot" title="Our Story"></a>
+    <a href="page3.html" class="nav-dot active" title="Why I Love You"></a>
+    <a href="page4.html" class="nav-dot" title="Your Future"></a>
+    <a href="page5.html" class="nav-dot" title="Forever"></a>
+  </nav>
+  <div class="page-label">Page 3 of 5</div>
+
+  <!-- ===== SCRATCH CARD SURPRISE ===== -->
+  <section class="scratch-section">
+    <div class="section-tag">🎁 Surprise #3 — Scratch to reveal!</div>
+    <h1 class="section-title gradient-text" style="font-family:var(--font-head);margin:16px 0;">
+      Why I Love You
+    </h1>
+    <p class="section-sub" style="max-width:500px;margin:0 auto 30px;">Scratch the card below to unlock a secret message just for you ✨</p>
+
+    <div class="scratch-wrap">
+      <div class="scratch-reveal">
+        <span style="font-size:2.5rem">💌</span>
+        <p>"You are not just my love story —<br/>you are my favourite story, period."</p>
+      </div>
+      <canvas id="scratchCanvas" width="340" height="200"></canvas>
+    </div>
+    <p class="scratch-hint">↑ Scratch the silver card!</p>
+  </section>
+
+  <!-- ===== REASONS ===== -->
+  <section class="reasons-section">
+    <div class="section-header">
+      <div class="section-tag">💝 6 Reasons (of millions)</div>
+      <h2 class="section-title gradient-text" style="font-family:var(--font-head);">The Way You Make Me Feel</h2>
+    </div>
+
+    <div class="reasons-bento">
+      <div class="r-card reveal">
+        <span class="r-num">01</span>
+        <span class="r-icon">😊</span>
+        <h3>Your Smile</h3>
+        <p>That smile of yours rewrites the laws of physics — it literally makes any room brighter. I catch myself smiling back at nothing, just remembering it.</p>
+      </div>
+      <div class="r-card reveal">
+        <span class="r-num">02</span>
+        <span class="r-icon">🎨</span>
+        <h3>Your Creative Mind</h3>
+        <p>The way you see beauty in spaces and shapes — it's breathtaking. You have a rare gift, and the world will see it soon.</p>
+      </div>
+      <div class="r-card reveal">
+        <span class="r-num">03</span>
+        <span class="r-icon">💪</span>
+        <h3>Your Strength</h3>
+        <p>You carry things silently that would break others. That quiet strength in you — it amazes me every single day.</p>
+      </div>
+      <div class="r-card reveal">
+        <span class="r-num">04</span>
+        <span class="r-icon">😂</span>
+        <h3>Your Sense of Humour</h3>
+        <p>You make ordinary moments hilarious without even trying. I'd choose your laugh as my favourite sound, forever.</p>
+      </div>
+      <div class="r-card reveal">
+        <span class="r-num">05</span>
+        <span class="r-icon">💚</span>
+        <h3>Your Eyes</h3>
+        <p>Those green eyes hold entire universes. Sometimes I just stare and get completely lost — and honestly? I don't want to be found.</p>
+      </div>
+      <div class="r-card reveal">
+        <span class="r-num">06</span>
+        <span class="r-icon">🌸</span>
+        <h3>Simply You</h3>
+        <p>There is no single reason — you just exist, and that is enough. You are enough. Always have been.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LETTER ===== -->
+  <section class="letter-section">
+    <div class="section-header" style="text-align:center;margin-bottom:50px;" class="reveal">
+      <div class="section-tag">💌 From the Heart</div>
+      <h2 class="section-title gradient-text" style="font-family:var(--font-head);">Words I Never Said Enough</h2>
+    </div>
+    <div class="letter-wrap">
+      <div class="letter-card reveal glass-card">
+        <div class="letter-stamp">💕</div>
+        <p class="l-open">My love,</p>
+        <p>I am not a poet and I am not Shakespeare — but when it comes to you, something inside me wants to try. You walked into my life quietly, and somehow rearranged everything without me noticing.</p>
+        <p>Every moment with you feels like a chapter I never want to end. Every photo we take becomes my new favourite. Every laugh we share is something I replay on my worst days.</p>
+        <p>I am building this website because I want you to <em style="color:var(--pink);font-style:normal;font-weight:600;">see</em> it — to understand that my feelings for you aren't just words in a chat. They're real, they're here, and they're not going anywhere.</p>
+        <p class="l-close">I love you more than this website can hold. And I built it big. 💕</p>
+        <div class="l-sig">Always yours 💫</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NAV -->
+  <div class="page-arrow-nav">
+    <a href="page2.html" class="btn-outline">← Our Story</a>
+    <a href="page4.html" class="btn-primary">Your Future →</a>
+  </div>
+
+  <script src="shared.js"></script>
+  <script>
+    // ===== SCRATCH CARD =====
+    const canvas = document.getElementById('scratchCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Draw scratch surface
+    const grad = ctx.createLinearGradient(0,0,340,200);
+    grad.addColorStop(0,'#a0a0b0'); grad.addColorStop(1,'#c8c8d8');
+    ctx.fillStyle = grad; ctx.fillRect(0,0,340,200);
+    ctx.fillStyle = 'rgba(80,80,100,0.4)';
+    for(let i=0;i<20;i++){
+      ctx.fillRect(Math.random()*340, Math.random()*200, Math.random()*60+10, 1);
+    }
+    ctx.fillStyle='rgba(255,255,255,0.3)';
+    ctx.font='bold 18px Inter'; ctx.textAlign='center';
+    ctx.fillText('✨ Scratch Here ✨', 170, 105);
+
+    ctx.globalCompositeOperation = 'destination-out';
+    let scratching = false;
+    let pct = 0;
+
+    function scratch(x,y){
+      ctx.beginPath();
+      ctx.arc(x,y,28,0,Math.PI*2);
+      ctx.fill();
+      checkPct();
+    }
+
+    function getPos(e){
+      const r=canvas.getBoundingClientRect();
+      if(e.touches) return{x:e.touches[0].clientX-r.left,y:e.touches[0].clientY-r.top};
+      return{x:e.clientX-r.left,y:e.clientY-r.top};
+    }
+
+    canvas.addEventListener('mousedown',e=>{scratching=true;scratch(...Object.values(getPos(e)));});
+    canvas.addEventListener('mousemove',e=>{if(scratching)scratch(...Object.values(getPos(e)));});
+    canvas.addEventListener('mouseup',()=>scratching=false);
+    canvas.addEventListener('touchstart',e=>{e.preventDefault();scratching=true;scratch(...Object.values(getPos(e)));});
+    canvas.addEventListener('touchmove',e=>{e.preventDefault();if(scratching)scratch(...Object.values(getPos(e)));});
+    canvas.addEventListener('touchend',()=>scratching=false);
+
+    function checkPct(){
+      const d=ctx.getImageData(0,0,340,200).data;
+      let clear=0;
+      for(let i=3;i<d.length;i+=4) if(d[i]===0) clear++;
+      pct=clear/(340*200);
+      if(pct>0.55){ canvas.style.transition='opacity 0.8s'; canvas.style.opacity='0'; setTimeout(()=>canvas.remove(),800); burstHearts(); }
+    }
+
+    function burstHearts(){
+      const emojis=['💕','💖','✨','🌹','💫','🌸'];
+      for(let i=0;i<20;i++){
+        setTimeout(()=>{
+          const h=document.createElement('div');
+          h.className='burst-particle';
+          h.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+          h.style.left=Math.random()*100+'vw';
+          h.style.top=Math.random()*100+'vh';
+          h.style.fontSize=(Math.random()*20+14)+'px';
+          document.body.appendChild(h);
+          setTimeout(()=>h.remove(),2000);
+        },i*60);
+      }
+    }
+  </script>
+</body>
+</html>

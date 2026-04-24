@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Story 📸 — Page 2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    body {
+      background:
+        radial-gradient(ellipse at 0% 0%, rgba(199,125,255,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 100% 100%, rgba(255,77,126,0.15) 0%, transparent 50%),
+        var(--dark2);
+    }
+
+    /* ===== HERO ===== */
+    .p2-hero {
+      min-height: 100vh; display:flex; align-items:center; justify-content:center;
+      text-align:center; position:relative; overflow:hidden; padding:40px 20px;
+    }
+    .p2-hero-content { position:relative; z-index:5; max-width:700px; }
+    .surprise-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background: linear-gradient(135deg, rgba(255,209,102,0.15), rgba(255,77,126,0.15));
+      border: 1px solid rgba(255,209,102,0.4); border-radius:50px;
+      padding:8px 22px; font-size:13px; color:var(--gold); margin-bottom:24px;
+      animation: glow-badge 2s ease-in-out infinite;
+    }
+    @keyframes glow-badge { 0%,100%{box-shadow:0 0 10px rgba(255,209,102,0.2)} 50%{box-shadow:0 0 30px rgba(255,209,102,0.5)} }
+
+    .p2-title {
+      font-family:var(--font-head);
+      font-size:clamp(3rem,8vw,6rem);
+      line-height:1.1; margin-bottom:20px;
+    }
+    .p2-sub { color:var(--muted); font-size:1.05rem; line-height:1.8; margin-bottom:40px; }
+
+    /* Polaroid stack surprise */
+    .polaroid-stack {
+      position:relative; width:220px; height:250px;
+      margin: 0 auto 50px; cursor:pointer;
+    }
+    .polaroid-stack .pol {
+      position:absolute; inset:0;
+      background:white; border-radius:4px;
+      padding:10px 10px 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .polaroid-stack .pol img { width:100%; height:190px; object-fit:cover; border-radius:2px; }
+    .polaroid-stack .pol:nth-child(1) { transform: rotate(-8deg); z-index:1; }
+    .polaroid-stack .pol:nth-child(2) { transform: rotate(4deg); z-index:2; }
+    .polaroid-stack .pol:nth-child(3) { transform: rotate(-2deg); z-index:3; }
+    .polaroid-stack .pol-caption {
+      text-align:center; color:#333; font-family:var(--font-script);
+      font-size:1rem; margin-top:6px;
+    }
+    .polaroid-stack:hover .pol:nth-child(1) { transform: rotate(-22deg) translate(-80px, 10px); }
+    .polaroid-stack:hover .pol:nth-child(2) { transform: rotate(0deg); }
+    .polaroid-stack:hover .pol:nth-child(3) { transform: rotate(18deg) translate(80px, 10px); }
+    .pol-hint { color:var(--muted); font-size:0.85rem; margin-top:30px; animation:pulse-text 2s infinite; }
+    @keyframes pulse-text { 0%,100%{opacity:.5} 50%{opacity:1} }
+
+    /* ===== GALLERY SECTION ===== */
+    .gallery-section { padding:100px 40px; position:relative; z-index:5; }
+    .gallery-section .section-header { text-align:center; margin-bottom:60px; }
+
+    .masonry-grid {
+      columns: 3; column-gap: 20px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    @media(max-width:900px){ .masonry-grid{columns:2;} }
+    @media(max-width:560px){ .masonry-grid{columns:1;} }
+
+    .masonry-item {
+      break-inside: avoid; margin-bottom:20px;
+      border-radius:18px; overflow:hidden;
+      position:relative; cursor:pointer;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .masonry-item:hover { transform:translateY(-8px) scale(1.02); box-shadow:0 20px 60px rgba(255,77,126,0.35); }
+
+    .masonry-item img { width:100%; display:block; }
+    .masonry-item .overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(10,6,18,0.85) 0%, transparent 55%);
+      opacity:0; transition:opacity 0.3s;
+      display:flex; flex-direction:column;
+      justify-content:flex-end; padding:20px;
+    }
+    .masonry-item:hover .overlay { opacity:1; }
+    .overlay-heart { font-size:2rem; }
+    .overlay-cap { color:white; font-family:var(--font-script); font-size:1.1rem; margin-top:4px; }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display:none; position:fixed; inset:0;
+      background:rgba(0,0,0,0.96); z-index:10000;
+      align-items:center; justify-content:center;
+    }
+    .lightbox.open { display:flex; }
+    .lb-inner { text-align:center; max-width:90vw; }
+    .lb-inner img { max-height:80vh; max-width:100%; border-radius:16px; }
+    .lb-cap { color:var(--pink); font-family:var(--font-script); font-size:1.3rem; margin-top:14px; }
+    .lb-close { position:fixed; top:20px; left:20px; background:rgba(255,77,126,0.2); border:1px solid var(--rose); color:white; width:44px; height:44px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex;align-items:center;justify-content:center; transition:all .2s; }
+    .lb-close:hover{background:var(--rose);}
+    .lb-prev,.lb-next { position:fixed; top:50%; transform:translateY(-50%); background:rgba(255,77,126,0.2); border:1px solid var(--rose); color:white; width:44px; height:44px; border-radius:50%; font-size:1.4rem; cursor:pointer; display:flex;align-items:center;justify-content:center; transition:all .2s; }
+    .lb-prev{right:20px;} .lb-next{left:70px;}
+    .lb-prev:hover,.lb-next:hover{background:var(--rose);}
+  </style>
+</head>
+<body>
+  <canvas id="particleCanvas"></canvas>
+  <button class="music-orb" id="musicOrb" onclick="toggleMusic()">♪</button>
+  <nav class="page-nav">
+    <a href="index.html" class="nav-dot" title="Welcome"></a>
+    <a href="page2.html" class="nav-dot active" title="Our Story"></a>
+    <a href="page3.html" class="nav-dot" title="Why I Love You"></a>
+    <a href="page4.html" class="nav-dot" title="Your Future"></a>
+    <a href="page5.html" class="nav-dot" title="Forever"></a>
+  </nav>
+  <div class="page-label">Page 2 of 5</div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" onclick="closeLB()">✕</button>
+    <button class="lb-prev" onclick="prevLB()">‹</button>
+    <button class="lb-next" onclick="nextLB()">›</button>
+    <div class="lb-inner">
+      <img id="lbImg" src="" alt=""/>
+      <p class="lb-cap" id="lbCap"></p>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="p2-hero">
+    <div class="p2-hero-content page-enter">
+      <div class="surprise-badge">🎁 Surprise #2 — Hover the stack!</div>
+      <h1 class="p2-title gradient-text">Our Story</h1>
+      <p class="p2-sub">Every photo holds a memory.<br/>Every memory holds a piece of my heart.</p>
+
+      <!-- Polaroid stack -->
+      <div class="polaroid-stack" id="polStack">
+        <div class="pol">
+          <img src="WhatsApp Image 2026-04-24 at 10.09.18 PM.jpeg" alt="Us"/>
+          <p class="pol-caption">Us 💕</p>
+        </div>
+        <div class="pol">
+          <img src="WhatsApp Image 2026-04-24 at 10.09.34 PM.jpeg" alt="Smiling"/>
+          <p class="pol-caption">Your smile 🌸</p>
+        </div>
+        <div class="pol">
+          <img src="WhatsApp Image 2026-04-24 at 10.08.57 PM.jpeg" alt="Together"/>
+          <p class="pol-caption">Together ✨</p>
+        </div>
+      </div>
+      <p class="pol-hint">↑ Hover to fan them out!</p>
+
+      <a href="#gallery" class="btn-primary">See All Our Photos ↓</a>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section" id="gallery">
+    <div class="section-header reveal">
+      <div class="section-tag">📸 Our Moments</div>
+      <h2 class="section-title gradient-text">10 Photos, Endless Memories</h2>
+      <p class="section-sub">Click any photo to open it ✨</p>
+    </div>
+
+    <div class="masonry-grid" id="masonryGrid">
+      <!-- photos injected by JS -->
+    </div>
+  </section>
+
+  <!-- NAV -->
+  <div class="page-arrow-nav">
+    <a href="index.html" class="btn-outline">← Back</a>
+    <a href="page3.html" class="btn-primary">Why I Love You →</a>
+  </div>
+
+  <script src="shared.js"></script>
+  <script>
+    const photos = [
+      { src:'WhatsApp Image 2026-04-24 at 10.09.18 PM.jpeg', cap:'The best selfie ever 💕' },
+      { src:'WhatsApp Image 2026-04-24 at 10.08.57 PM.jpeg', cap:'Mirror of love 🪞' },
+      { src:'WhatsApp Image 2026-04-24 at 10.09.34 PM.jpeg', cap:'Your smile lights everything ✨' },
+      { src:'WhatsApp Image 2026-04-24 at 10.10.22 PM.jpeg', cap:'Cutest panda hugger 🐼' },
+      { src:'WhatsApp Image 2026-04-24 at 10.11.05 PM.jpeg', cap:'Even on a screen, beautiful 💻' },
+      { src:'WhatsApp Image 2026-04-24 at 10.11.24 PM.jpeg', cap:'Simply stunning 🌸' },
+      { src:'WhatsApp Image 2026-04-24 at 10.11.37 PM.jpeg', cap:'My favourite look 👑' },
+      { src:'WhatsApp Image 2026-04-24 at 10.12.26 PM.jpeg', cap:'That smirk... 😍' },
+      { src:'WhatsApp Image 2026-04-24 at 10.42.33 PM.jpeg', cap:'Glowing in lavender 💜' },
+      { src:'WhatsApp Image 2026-04-24 at 10.42.51 PM.jpeg', cap:'Those eyes though 👀💚' },
+    ];
+
+    // Build grid
+    const grid = document.getElementById('masonryGrid');
+    photos.forEach((p, i) => {
+      const div = document.createElement('div');
+      div.className = 'masonry-item reveal';
+      div.innerHTML = `
+        <img src="${p.src}" alt="${p.cap}" loading="lazy"/>
+        <div class="overlay">
+          <div class="overlay-heart">💖</div>
+          <p class="overlay-cap">${p.cap}</p>
+        </div>`;
+      div.addEventListener('click', () => openLB(i));
+      grid.appendChild(div);
+    });
+
+    // Lightbox
+    let cur = 0;
+    function openLB(i) { cur=i; document.getElementById('lbImg').src=photos[i].src; document.getElementById('lbCap').textContent=photos[i].cap; document.getElementById('lightbox').classList.add('open'); document.body.style.overflow='hidden'; }
+    function closeLB() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow=''; }
+    function prevLB() { cur=(cur-1+photos.length)%photos.length; openLB(cur); }
+    function nextLB() { cur=(cur+1)%photos.length; openLB(cur); }
+    document.getElementById('lightbox').addEventListener('click', e=>{ if(e.target===document.getElementById('lightbox')) closeLB(); });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLB(); if(e.key==='ArrowLeft') nextLB(); if(e.key==='ArrowRight') prevLB(); });
+  </script>
+</body>
+</html>

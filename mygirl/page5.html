@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forever 💖 — Page 5</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    body {
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(255,77,126,0.3) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 100%, rgba(199,125,255,0.2) 0%, transparent 50%),
+        var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ===== MAIN HERO ===== */
+    .final-hero{
+      min-height:100vh; display:flex; align-items:center; justify-content:center;
+      flex-direction:column; text-align:center; padding:60px 20px;
+      position:relative; z-index:5;
+    }
+    .big-heart{
+      font-size:8rem; display:block;
+      animation:superbeat 1.8s ease-in-out infinite;
+      filter:drop-shadow(0 0 40px rgba(255,77,126,0.9));
+      cursor:pointer;
+    }
+    @keyframes superbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.15)}}
+
+    .final-tag{margin:20px 0;}
+    .final-title{
+      font-family:var(--font-head);
+      font-size:clamp(3rem,9vw,7rem);
+      line-height:1.1; margin:20px 0;
+    }
+    .final-sub{color:var(--muted);font-size:1.15rem;line-height:1.8;max-width:580px;margin:0 auto 40px;}
+    .final-sub strong{color:var(--pink);}
+
+    /* ===== LOVE METER ===== */
+    .meter-section{padding:60px 40px;text-align:center;position:relative;z-index:5;}
+    .meter-wrap{
+      max-width:600px;margin:40px auto;
+      background:var(--glass);border:1px solid var(--glass-b);
+      border-radius:24px;padding:40px;
+    }
+    .meter-label{color:var(--muted);margin-bottom:20px;font-size:1rem;}
+    .meter-bar-bg{
+      height:28px;background:rgba(255,255,255,0.07);
+      border-radius:50px;overflow:hidden;margin-bottom:12px;
+    }
+    .meter-bar-fill{
+      height:100%;width:0%;border-radius:50px;
+      background:linear-gradient(90deg,var(--rose),var(--lavender),var(--gold));
+      transition:width 2s cubic-bezier(0.34,1.2,0.64,1);
+      position:relative;overflow:hidden;
+    }
+    .meter-bar-fill::after{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
+      animation:shimmer 2s infinite;
+    }
+    @keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+    .meter-val{font-size:3rem;font-weight:900;color:var(--pink);font-family:var(--font-head);}
+    .meter-note{color:var(--muted);font-size:.9rem;margin-top:8px;}
+
+    /* ===== FIREWORK BUTTON ===== */
+    .firework-section{
+      padding:60px 40px;text-align:center;position:relative;z-index:5;
+    }
+    .firework-btn{
+      background:linear-gradient(135deg,var(--rose),var(--lavender),var(--gold));
+      color:white;border:none;border-radius:50px;
+      padding:20px 56px;font-size:1.2rem;font-weight:700;
+      font-family:var(--font-body);cursor:pointer;
+      box-shadow:0 10px 50px rgba(255,77,126,0.5);
+      transition:all 0.3s;
+      animation:btn-glow 2s ease-in-out infinite;
+    }
+    @keyframes btn-glow{0%,100%{box-shadow:0 10px 50px rgba(255,77,126,0.5)}50%{box-shadow:0 10px 80px rgba(255,77,126,0.9)}}
+    .firework-btn:hover{transform:scale(1.08);}
+    .fw-hint{color:var(--muted);font-size:.9rem;margin-top:16px;display:block;}
+
+    /* Firework particle */
+    .fw{position:fixed;border-radius:50%;pointer-events:none;z-index:9999;animation:fwAnim var(--dur) ease forwards;}
+    @keyframes fwAnim{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0)}}
+
+    /* ===== POEM ===== */
+    .poem-section{
+      padding:80px 40px;text-align:center;position:relative;z-index:5;
+    }
+    .poem-card{
+      max-width:640px;margin:40px auto;
+      background:var(--glass);border:1px solid var(--glass-b);
+      border-radius:28px;padding:60px 48px;
+      box-shadow:0 0 80px rgba(255,77,126,0.12);
+      position:relative;
+    }
+    @media(max-width:600px){.poem-card{padding:40px 24px;}}
+    .poem-deco{
+      font-size:5rem;color:var(--rose);opacity:.25;
+      font-family:var(--font-script);line-height:1;
+    }
+    .poem-line{
+      font-family:var(--font-script);
+      font-size:clamp(1.1rem,3vw,1.4rem);
+      color:var(--muted);line-height:2.2;
+      opacity:0;transform:translateY(16px);
+      animation:lineIn 0.6s ease forwards;
+      animation-delay:var(--d);
+    }
+    @keyframes lineIn{to{opacity:1;transform:translateY(0)}}
+
+    /* ===== WISHES CAROUSEL ===== */
+    .wishes-section{padding:80px 40px;position:relative;z-index:5;}
+    .wishes-section .section-header{text-align:center;margin-bottom:50px;}
+    .wishes-scroll{
+      display:flex;gap:20px;overflow-x:auto;padding:20px 40px;
+      scrollbar-width:none;-webkit-overflow-scrolling:touch;
+      max-width:1100px;margin:0 auto;
+    }
+    .wishes-scroll::-webkit-scrollbar{display:none;}
+    .wish-pill{
+      flex-shrink:0;min-width:240px;
+      background:var(--glass);border:1px solid var(--glass-b);
+      border-radius:20px;padding:28px 24px;text-align:center;
+      transition:all 0.3s;
+    }
+    .wish-pill:hover{border-color:var(--gold);transform:translateY(-8px);box-shadow:0 20px 50px rgba(255,209,102,0.2);}
+    .wish-pill .wi{font-size:2.5rem;margin-bottom:12px;display:block;animation:pulse-orb 2.5s infinite;}
+    .wish-pill p{color:var(--muted);font-size:.95rem;line-height:1.6;}
+
+    /* ===== FINAL CLOSING ===== */
+    .closing-section{
+      min-height:60vh;display:flex;align-items:center;justify-content:center;
+      flex-direction:column;text-align:center;padding:60px 20px;
+      position:relative;z-index:5;
+    }
+    .closing-img{
+      width:200px;height:200px;border-radius:50%;
+      object-fit:cover;object-position:center top;
+      border:4px solid var(--pink);
+      box-shadow:0 0 50px rgba(255,77,126,0.5);
+      margin-bottom:28px;
+    }
+    .closing-title{font-family:var(--font-head);font-size:clamp(2rem,6vw,4rem);margin-bottom:16px;}
+    .closing-sub{color:var(--muted);max-width:500px;font-size:1.05rem;line-height:1.8;margin-bottom:32px;}
+    .restart-link{color:var(--pink);text-decoration:none;font-size:.9rem;display:block;margin-top:20px;opacity:.7;transition:opacity .2s;}
+    .restart-link:hover{opacity:1;}
+  </style>
+</head>
+<body>
+  <canvas id="particleCanvas"></canvas>
+  <button class="music-orb" id="musicOrb" onclick="toggleMusic()">♪</button>
+  <nav class="page-nav">
+    <a href="index.html" class="nav-dot" title="Welcome"></a>
+    <a href="page2.html" class="nav-dot" title="Our Story"></a>
+    <a href="page3.html" class="nav-dot" title="Why I Love You"></a>
+    <a href="page4.html" class="nav-dot" title="Your Future"></a>
+    <a href="page5.html" class="nav-dot active" title="Forever"></a>
+  </nav>
+  <div class="page-label">Page 5 of 5 — The Final Surprise 🎉</div>
+
+  <!-- HERO -->
+  <section class="final-hero">
+    <span class="big-heart" id="bigHeart" onclick="heartClick()">💖</span>
+    <div class="section-tag final-tag">🎁 Grand Finale — Click the heart!</div>
+    <h1 class="final-title gradient-text" style="font-family:var(--font-head);">
+      I Love You.<br/>Forever.
+    </h1>
+    <p class="final-sub">
+      You've reached the end of this website.<br/>
+      But with us? <strong>There is no end.</strong><br/>
+      This is just page one of our story. 💕
+    </p>
+    <a href="#meter" class="btn-primary">See Our Love Meter ↓</a>
+  </section>
+
+  <!-- LOVE METER -->
+  <section class="meter-section" id="meter">
+    <div class="section-tag">💞 Love Measurement Laboratory</div>
+    <h2 class="section-title gradient-text" style="font-family:var(--font-head);text-align:center;margin:16px 0 40px;">How much do I love you?</h2>
+    <div class="meter-wrap glass-card" id="meterWrap">
+      <p class="meter-label">Calculating love levels... 💕</p>
+      <div class="meter-bar-bg">
+        <div class="meter-bar-fill" id="meterFill"></div>
+      </div>
+      <div class="meter-val" id="meterVal">0%</div>
+      <p class="meter-note" id="meterNote">Stand by...</p>
+    </div>
+  </section>
+
+  <!-- FIREWORKS -->
+  <section class="firework-section">
+    <div class="section-tag">🎆 Surprise #5 — The Finale!</div>
+    <h2 class="section-title gradient-text" style="font-family:var(--font-head);text-align:center;margin:16px 0 30px;">Press this button</h2>
+    <button class="firework-btn" id="fwBtn" onclick="launchFireworks()">
+      🎆 Launch Fireworks for You! 🎆
+    </button>
+    <span class="fw-hint">Go ahead... you deserve a celebration 🥳</span>
+  </section>
+
+  <!-- POEM -->
+  <section class="poem-section">
+    <div class="section-tag" style="display:block;text-align:center;margin-bottom:20px;">💌 A Poem for You</div>
+    <h2 class="section-title gradient-text" style="font-family:var(--font-head);text-align:center;margin-bottom:40px;">Written from the heart</h2>
+    <div class="poem-card glass-card">
+      <div class="poem-deco">❝</div>
+      <p class="poem-line" style="--d:.2s">When I see you, time forgets to move,</p>
+      <p class="poem-line" style="--d:.5s">My heart finds every reason to approve.</p>
+      <p class="poem-line" style="--d:.8s">Your eyes hold galaxies I'd gladly drown in,</p>
+      <p class="poem-line" style="--d:1.1s">Your laughter is the best song I have known.</p>
+      <p class="poem-line" style="--d:1.4s">You'll graduate, design, and change the world,</p>
+      <p class="poem-line" style="--d:1.7s">And I'll be there — your biggest fan, your home.</p>
+      <p class="poem-line" style="--d:2s">So here's my website, here's my heart laid bare,</p>
+      <p class="poem-line" style="--d:2.3s">I love you — now, forever, everywhere. 💕</p>
+      <div class="poem-deco" style="text-align:right;margin-top:10px;">❞</div>
+    </div>
+  </section>
+
+  <!-- WISHES CAROUSEL -->
+  <section class="wishes-section">
+    <div class="section-header">
+      <div class="section-tag">🌟 My Wishes for You</div>
+      <h2 class="section-title gradient-text" style="font-family:var(--font-head);">Everything I Wish You</h2>
+    </div>
+    <div class="wishes-scroll">
+      <div class="wish-pill"><span class="wi">🎓</span><p>To graduate with flying colours and walk that stage with your head held high</p></div>
+      <div class="wish-pill"><span class="wi">🏛️</span><p>To become the most brilliant Interior Design Engineer this country has ever seen</p></div>
+      <div class="wish-pill"><span class="wi">🌸</span><p>To wake up every morning feeling at peace with yourself and excited for your day</p></div>
+      <div class="wish-pill"><span class="wi">😂</span><p>To laugh so hard your stomach hurts, every single week</p></div>
+      <div class="wish-pill"><span class="wi">💪</span><p>To face every hard day knowing you are stronger than you think</p></div>
+      <div class="wish-pill"><span class="wi">✈️</span><p>To travel to every place you've ever dreamed of — and design rooms there one day</p></div>
+      <div class="wish-pill"><span class="wi">💚</span><p>To know — truly know — how beautiful and special you are</p></div>
+      <div class="wish-pill"><span class="wi">💕</span><p>To always have me by your side, cheering you on in every little thing</p></div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing-section">
+    <img src="WhatsApp Image 2026-04-24 at 10.42.33 PM.jpeg" class="closing-img" alt="My love"/>
+    <h2 class="closing-title gradient-text" style="font-family:var(--font-head);">My Beautiful Girl 💕</h2>
+    <p class="closing-sub">
+      I built this for you because you deserve more than a text message. You deserve a whole website. Maybe next time, a whole universe.
+    </p>
+    <a href="page4.html" class="btn-outline">← Your Future</a>
+    <a href="index.html" class="restart-link">↺ Start over from the beginning</a>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    // ===== LOVE METER =====
+    const meterFill = document.getElementById('meterFill');
+    const meterVal  = document.getElementById('meterVal');
+    const meterNote = document.getElementById('meterNote');
+    const stages = [
+      [30,  "More than you think..."],
+      [60,  "Way more than words can say..."],
+      [90,  "Off the charts already..."],
+      [100, "∞ — Infinitely & Always 💕"]
+    ];
+    let si = 0;
+    const meterObs = new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting) return;
+      meterObs.disconnect();
+      function next() {
+        if (si >= stages.length) return;
+        const [pct, note] = stages[si++];
+        meterFill.style.width = pct + '%';
+        let cur = parseInt(meterVal.textContent) || 0;
+        const target = pct === 100 ? 100 : pct;
+        const iv = setInterval(() => {
+          cur = Math.min(cur + 2, target);
+          meterVal.textContent = cur < 100 ? cur + '%' : '∞';
+          if (cur >= target) { clearInterval(iv); meterNote.textContent = note; setTimeout(next, 1400); }
+        }, 30);
+      }
+      next();
+    }, { threshold: 0.4 });
+    meterObs.observe(document.getElementById('meter'));
+
+    // ===== BIG HEART CLICK =====
+    function heartClick() {
+      const emojis = ['💕','💖','🌹','✨','💫','💗','🌸','❤️','💝'];
+      for (let i = 0; i < 40; i++) {
+        setTimeout(() => {
+          const h = document.createElement('div');
+          h.className = 'burst-particle';
+          h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+          h.style.left   = Math.random() * 100 + 'vw';
+          h.style.top    = Math.random() * 100 + 'vh';
+          h.style.fontSize = (Math.random() * 28 + 14) + 'px';
+          h.style.setProperty('--dur', (Math.random() * 1.5 + 1) + 's');
+          document.body.appendChild(h);
+          setTimeout(() => h.remove(), 2500);
+        }, i * 60);
+      }
+    }
+
+    // ===== FIREWORKS =====
+    function launchFireworks() {
+      const colors = ['#ff4d7e','#c77dff','#ffd166','#ff8fab','#fff','#ff6b6b','#a8edea'];
+      for (let burst = 0; burst < 8; burst++) {
+        setTimeout(() => {
+          const cx = Math.random() * window.innerWidth;
+          const cy = Math.random() * window.innerHeight * 0.6 + 50;
+          for (let p = 0; p < 28; p++) {
+            const el = document.createElement('div');
+            el.className = 'fw';
+            const angle = (p / 28) * Math.PI * 2;
+            const dist  = Math.random() * 150 + 60;
+            el.style.cssText = `
+              left:${cx}px; top:${cy}px;
+              width:${Math.random()*6+3}px; height:${Math.random()*6+3}px;
+              background:${colors[Math.floor(Math.random()*colors.length)]};
+              --tx:${Math.cos(angle)*dist}px; --ty:${Math.sin(angle)*dist}px;
+              --dur:${Math.random()*0.8+0.6}s;
+            `;
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 1500);
+          }
+        }, burst * 250);
+      }
+
+      // Also rain emojis
+      const emojis = ['🎆','🎇','✨','💕','💖','🌟','🎉','💫'];
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          const h = document.createElement('div');
+          h.className = 'burst-particle';
+          h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+          h.style.left = Math.random() * 100 + 'vw';
+          h.style.top  = Math.random() * 100 + 'vh';
+          h.style.fontSize = (Math.random() * 24 + 16) + 'px';
+          h.style.setProperty('--dur', (Math.random() * 2 + 1) + 's');
+          document.body.appendChild(h);
+          setTimeout(() => h.remove(), 3000);
+        }, i * 120);
+      }
+    }
+  </script>
+</body>
+</html>

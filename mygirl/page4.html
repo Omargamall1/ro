@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Bright Future 🏛️ — Page 4</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    body {
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(255,209,102,0.1) 0%,transparent 50%),
+        radial-gradient(ellipse at 20% 80%, rgba(199,125,255,0.15) 0%,transparent 50%),
+        var(--dark2);
+    }
+
+    /* ===== HERO ===== */
+    .p4-hero{
+      min-height:100vh; display:flex; align-items:center; justify-content:center;
+      flex-direction:column; text-align:center; padding:60px 20px;
+      position:relative; z-index:5; overflow:hidden;
+    }
+    .grad-cap-anim{font-size:6rem;display:block;animation:capBounce 2s ease-in-out infinite;margin-bottom:20px;}
+    @keyframes capBounce{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-20px) rotate(5deg)}}
+
+    .p4-title{font-family:var(--font-head);font-size:clamp(2.8rem,8vw,6rem);line-height:1.15;margin:20px 0;}
+    .p4-sub{color:var(--muted);font-size:1.1rem;line-height:1.8;max-width:600px;margin:0 auto 40px;}
+
+    /* ===== FLIP CARD SURPRISE ===== */
+    .flip-section{
+      padding:80px 40px; position:relative; z-index:5;
+    }
+    .flip-section .section-header{text-align:center;margin-bottom:50px;}
+
+    .flip-grid{
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:28px; max-width:960px; margin:0 auto;
+    }
+    @media(max-width:768px){.flip-grid{grid-template-columns:1fr 1fr;}}
+    @media(max-width:480px){.flip-grid{grid-template-columns:1fr;}}
+
+    .flip-card{height:220px;perspective:1000px;cursor:pointer;}
+    .flip-inner{
+      position:relative; width:100%; height:100%;
+      transform-style:preserve-3d; transition:transform 0.65s cubic-bezier(.4,2,.6,1);
+    }
+    .flip-card:hover .flip-inner{transform:rotateY(180deg);}
+    .flip-front,.flip-back{
+      position:absolute; inset:0; border-radius:20px;
+      backface-visibility:hidden; display:flex;
+      align-items:center; justify-content:center; flex-direction:column;
+      gap:12px; padding:24px; text-align:center;
+    }
+    .flip-front{
+      background:var(--glass); border:1px solid var(--glass-b);
+    }
+    .flip-back{
+      background:linear-gradient(135deg,rgba(255,77,126,0.2),rgba(199,125,255,0.2));
+      border:1px solid rgba(199,125,255,0.4);
+      transform:rotateY(180deg);
+    }
+    .flip-icon{font-size:2.8rem;}
+    .flip-front h3{font-family:var(--font-head);font-size:1.1rem;color:var(--pink);}
+    .flip-front p{color:var(--muted);font-size:.85rem;}
+    .flip-back p{color:var(--text);font-size:.95rem;line-height:1.6;font-style:italic;}
+    .flip-back .flip-quote{font-family:var(--font-script);font-size:1.15rem;color:var(--gold);}
+
+    /* ===== FUTURE TIMELINE ===== */
+    .future-section{padding:80px 40px;position:relative;z-index:5;}
+    .future-section .section-header{text-align:center;margin-bottom:60px;}
+
+    .timeline{max-width:760px;margin:0 auto;position:relative;}
+    .timeline::before{
+      content:'';position:absolute;left:50%;top:0;bottom:0;
+      width:2px;background:linear-gradient(to bottom,var(--rose),var(--lavender));
+      transform:translateX(-50%);
+    }
+    @media(max-width:640px){
+      .timeline::before{left:20px;}
+      .tl-item{flex-direction:column!important;padding-left:50px!important;padding-right:0!important;}
+      .tl-dot{left:8px!important;right:auto!important;top:16px!important;}
+      .tl-card{margin:0!important;}
+    }
+
+    .tl-item{
+      display:flex; align-items:flex-start; gap:20px;
+      margin-bottom:50px; position:relative;
+    }
+    .tl-item:nth-child(even){flex-direction:row-reverse;}
+    .tl-dot{
+      position:absolute; left:50%; top:12px;
+      transform:translateX(-50%);
+      width:40px; height:40px; border-radius:50%;
+      background:linear-gradient(135deg,var(--rose),var(--lavender));
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.2rem; z-index:2;
+      box-shadow:0 0 20px rgba(255,77,126,0.5);
+    }
+    .tl-card{
+      flex:1; max-width:calc(50% - 40px);
+      background:var(--glass); border:1px solid var(--glass-b);
+      border-radius:18px; padding:24px;
+      transition:all 0.3s;
+    }
+    .tl-card:hover{border-color:var(--rose);box-shadow:0 10px 40px rgba(255,77,126,0.2);transform:translateY(-4px);}
+    .tl-year{color:var(--gold);font-size:.85rem;font-weight:600;letter-spacing:1px;margin-bottom:6px;}
+    .tl-card h3{font-family:var(--font-head);color:var(--pink);font-size:1.1rem;margin-bottom:8px;}
+    .tl-card p{color:var(--muted);line-height:1.7;font-size:.92rem;}
+
+    /* ===== INTERIOR DESIGN TIPS ===== */
+    .tips-section{padding:80px 40px;position:relative;z-index:5;}
+    .tips-section .section-header{text-align:center;margin-bottom:50px;}
+
+    .tips-grid{
+      display:grid; grid-template-columns:repeat(2,1fr);
+      gap:22px; max-width:860px; margin:0 auto;
+    }
+    @media(max-width:640px){.tips-grid{grid-template-columns:1fr;}}
+
+    .tip-card{
+      background:var(--glass); border:1px solid var(--glass-b);
+      border-radius:20px; padding:30px;
+      transition:all 0.3s; display:flex; gap:18px;
+    }
+    .tip-card:hover{border-color:var(--lavender);transform:translateX(6px);box-shadow:0 10px 40px rgba(199,125,255,0.2);}
+    .tip-num{
+      min-width:40px;height:40px;border-radius:50%;
+      background:linear-gradient(135deg,var(--rose),var(--lavender));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;font-size:.9rem;color:white;flex-shrink:0;
+    }
+    .tip-text h4{color:var(--pink);font-size:1rem;font-weight:600;margin-bottom:6px;}
+    .tip-text p{color:var(--muted);font-size:.9rem;line-height:1.6;}
+
+    /* ===== PHOTO SPOTLIGHT ===== */
+    .spotlight{
+      text-align:center; padding:60px 40px;
+      position:relative;z-index:5;
+    }
+    .spotlight-frame{
+      display:inline-block; position:relative;
+      border-radius:50%; overflow:hidden;
+      width:260px;height:260px;
+      border:4px solid var(--rose);
+      box-shadow:0 0 60px rgba(255,77,126,0.5);
+      margin-bottom:24px;
+    }
+    .spotlight-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+    .spotlight-ring{
+      position:absolute;inset:-8px;border-radius:50%;
+      border:2px dashed rgba(255,209,102,0.4);
+      animation:spin-slow 10s linear infinite;
+    }
+    @keyframes spin-slow{to{transform:rotate(360deg)}}
+    .spotlight p{color:var(--muted);font-size:1rem;line-height:1.8;max-width:500px;margin:0 auto;}
+    .spotlight .name-badge{
+      font-family:var(--font-script);font-size:2rem;color:var(--gold);
+      display:block;margin-bottom:16px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particleCanvas"></canvas>
+  <button class="music-orb" id="musicOrb" onclick="toggleMusic()">♪</button>
+  <nav class="page-nav">
+    <a href="index.html" class="nav-dot" title="Welcome"></a>
+    <a href="page2.html" class="nav-dot" title="Our Story"></a>
+    <a href="page3.html" class="nav-dot" title="Why I Love You"></a>
+    <a href="page4.html" class="nav-dot active" title="Your Future"></a>
+    <a href="page5.html" class="nav-dot" title="Forever"></a>
+  </nav>
+  <div class="page-label">Page 4 of 5</div>
+
+  <!-- HERO -->
+  <section class="p4-hero">
+    <span class="grad-cap-anim">🏛️</span>
+    <div class="section-tag">🎁 Surprise #4 — Flip the cards!</div>
+    <h1 class="p4-title gradient-text" style="font-family:var(--font-head);">
+      The Future<br/>Belongs to You
+    </h1>
+    <p class="p4-sub">
+      One day, you'll walk into rooms you designed yourself — and everyone in them will feel what I feel every time I look at you: pure awe.
+    </p>
+    <a href="#flip-section" class="btn-primary">Explore Your Future ↓</a>
+  </section>
+
+  <!-- SPOTLIGHT -->
+  <section class="spotlight">
+    <div class="spotlight-frame">
+      <img src="WhatsApp Image 2026-04-24 at 10.42.51 PM.jpeg" alt="My love"/>
+      <div class="spotlight-ring"></div>
+    </div>
+    <span class="name-badge">Future Interior Design Engineer ✨</span>
+    <p>Those eyes see beauty others don't notice. That mind dreams spaces others can't imagine. You were literally made for this. I believe in you — without a single doubt.</p>
+  </section>
+
+  <!-- FLIP CARDS SURPRISE -->
+  <section class="flip-section" id="flip-section">
+    <div class="section-header">
+      <div class="section-tag">💫 Tips for Your Journey</div>
+      <h2 class="section-title gradient-text" style="font-family:var(--font-head);">Hover to Reveal</h2>
+      <p class="section-sub">6 tips from someone who loves you and believes in you completely</p>
+    </div>
+
+    <div class="flip-grid">
+      <div class="flip-card reveal">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <span class="flip-icon">📐</span>
+            <h3>Master the Fundamentals</h3>
+            <p>Hover to reveal →</p>
+          </div>
+          <div class="flip-back">
+            <p>Space planning, proportion, lighting — when you nail the basics, your creativity has a foundation to soar from. You've got the eye. Now sharpen the skill.</p>
+            <span class="flip-quote">"Strong roots, tall tree." 🌳</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card reveal">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <span class="flip-icon">📖</span>
+            <h3>Never Stop Learning</h3>
+            <p>Hover to reveal →</p>
+          </div>
+          <div class="flip-back">
+            <p>Interior design trends evolve fast. Follow studios, visit exhibitions, explore Pinterest with intention. The best designers are always students first.</p>
+            <span class="flip-quote">"Curiosity is your superpower." ✨</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card reveal">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <span class="flip-icon">💼</span>
+            <h3>Build Your Portfolio Early</h3>
+            <p>Hover to reveal →</p>
+          </div>
+          <div class="flip-back">
+            <p>Document every project, sketch, and idea. Even the small ones. Your portfolio tells your story — make it as beautiful as you are.</p>
+            <span class="flip-quote">"Show, don't just tell." 🎨</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card reveal">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <span class="flip-icon">🌍</span>
+            <h3>Travel for Inspiration</h3>
+            <p>Hover to reveal →</p>
+          </div>
+          <div class="flip-back">
+            <p>Every city, every café, every window view is a lesson. Even a walk in Cairo holds design secrets if you look with your designer eyes.</p>
+            <span class="flip-quote">"The world is your moodboard." 🌸</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card reveal">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <span class="flip-icon">🤝</span>
+            <h3>Connect with People</h3>
+            <p>Hover to reveal →</p>
+          </div>
+          <div class="flip-back">
+            <p>Great design starts with understanding people — their needs, their feelings, their stories. You're already brilliant at that. Use it.</p>
+            <span class="flip-quote">"Empathy is the best design tool." 💚</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card reveal">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <span class="flip-icon">💎</span>
+            <h3>Believe in Yourself</h3>
+            <p>Hover to reveal →</p>
+          </div>
+          <div class="flip-back">
+            <p>This is the most important one. You have the talent, the sensitivity, and the brilliance. The only thing standing between you and your dream is doubt. Let it go.</p>
+            <span class="flip-quote">"You were made for this." 👑</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUTURE TIMELINE -->
+  <section class="future-section">
+    <div class="section-header reveal">
+      <div class="section-tag">⭐ Your Roadmap</div>
+      <h2 class="section-title gradient-text" style="font-family:var(--font-head);">I Can Already See It</h2>
+      <p class="section-sub">A vision of your beautiful future — because I believe in you that much</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-dot">🎓</div>
+        <div class="tl-card">
+          <div class="tl-year">VERY SOON</div>
+          <h3>Graduation Day</h3>
+          <p>You walk across that stage in your cap and gown — and I'll be the proudest person in the room. Interior Design Engineer. That's you. That's always been you.</p>
+        </div>
+        <div style="flex:1;max-width:calc(50% - 40px);"></div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot">🏢</div>
+        <div style="flex:1;max-width:calc(50% - 40px);"></div>
+        <div class="tl-card">
+          <div class="tl-year">FIRST JOB</div>
+          <h3>Your First Studio</h3>
+          <p>You join a firm and your eye for detail immediately sets you apart. Colleagues ask "how did you think of that?" You just smile — because you've always thought like this.</p>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot">✨</div>
+        <div class="tl-card">
+          <div class="tl-year">YOUR DREAM</div>
+          <h3>Your Own Studio</h3>
+          <p>One day — maybe sooner than you think — you open your own studio. Your name on the door. Your aesthetic everywhere. I'll be your first fan (and your loudest).</p>
+        </div>
+        <div style="flex:1;max-width:calc(50% - 40px);"></div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot">🌍</div>
+        <div style="flex:1;max-width:calc(50% - 40px);"></div>
+        <div class="tl-card">
+          <div class="tl-year">BEYOND</div>
+          <h3>Changing Spaces, Changing Lives</h3>
+          <p>Your work transforms how people feel in their homes. You make spaces breathe. You make families feel safe. That's not just design — that's a gift.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXTRA TIPS -->
+  <section class="tips-section">
+    <div class="section-header reveal">
+      <div class="section-tag">💡 Practical Tips</div>
+      <h2 class="section-title gradient-text" style="font-family:var(--font-head);">From Me to You</h2>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card reveal"><div class="tip-num">1</div><div class="tip-text"><h4>Study real spaces</h4><p>Visit hotels, restaurants, malls — not as a customer, but as a designer. Analyse everything: the lighting, the flow, the mood.</p></div></div>
+      <div class="tip-card reveal"><div class="tip-num">2</div><div class="tip-text"><h4>Software is your friend</h4><p>Get comfortable with AutoCAD, SketchUp, and 3ds Max. These are your brushes as an interior designer — master them and doors open.</p></div></div>
+      <div class="tip-card reveal"><div class="tip-num">3</div><div class="tip-text"><h4>Keep a design journal</h4><p>Sketch rough ideas, paste photos, collect fabric swatches. Your physical journal is where your best designs begin, long before the screen.</p></div></div>
+      <div class="tip-card reveal"><div class="tip-num">4</div><div class="tip-text"><h4>Don't fear your bold ideas</h4><p>The safest designs are often the most forgettable. Your instinct to go bolder — trust it. That's where your signature style lives.</p></div></div>
+      <div class="tip-card reveal"><div class="tip-num">5</div><div class="tip-text"><h4>Understand materials deeply</h4><p>Texture, acoustics, light reflection — the difference between a good designer and a great one is loving the materials, not just the looks.</p></div></div>
+      <div class="tip-card reveal"><div class="tip-num">6</div><div class="tip-text"><h4>Rest and recharge</h4><p>Creativity needs space. Don't burn yourself out. Take walks, breathe, look at the sky. Your best ideas will find you when you're calm.</p></div></div>
+    </div>
+  </section>
+
+  <!-- NAV -->
+  <div class="page-arrow-nav">
+    <a href="page3.html" class="btn-outline">← Why I Love You</a>
+    <a href="page5.html" class="btn-primary">The Final Page →</a>
+  </div>
+
+  <script src="shared.js"></script>
+</body>
+</html>
