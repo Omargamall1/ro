@@ -10,6 +10,12 @@
   
   <link rel="stylesheet" href="shared.css"/>
   <link rel="stylesheet" href="page1.css"/>
+  <style>
+    /* Responsive fixes for envelope and content */
+    .hero-wrap { padding: 20px; width: 100vw; overflow-x: hidden; }
+    .hero-content { width: 100%; max-width: 90vw; margin: 0 auto; padding: 10px; }
+    .typewriter-wrap { white-space: pre-wrap; word-wrap: break-word; max-width: 100%; font-size: clamp(1rem, 4vw, 1.5rem); text-align: center; }
+  </style>
 </head>
 <body>
 
@@ -17,107 +23,110 @@
   <canvas id="particleCanvas"></canvas>
 
   <!-- Navigation Dots -->
-  <nav class="nav-dots">
-    <a href="page1.html" class="dot active" title="Welcome"></a>
-    <a href="page2.html" class="dot" title="Our Story"></a>
-    <a href="page3.html" class="dot" title="Why I Love You"></a>
-    <a href="page4.html" class="dot" title="Your Future"></a>
-    <a href="page5.html" class="dot" title="Forever"></a>
+  <nav class="page-nav">
+    <a href="page1.html" class="nav-dot active" title="Welcome"></a>
+    <a href="page2.html" class="nav-dot" title="Our Story"></a>
+    <a href="page3.html" class="nav-dot" title="Why I Love You"></a>
+    <a href="page4.html" class="nav-dot" title="Your Future"></a>
+    <a href="page5.html" class="nav-dot" title="Forever"></a>
   </nav>
 
   <!-- Music Button -->
-  <button id="musicOrb" onclick="toggleMusic()" title="Play Music">♪</button>
+  <button class="music-orb" id="musicOrb" onclick="toggleMusic()" title="Play Music">♪</button>
 
   <main class="hero-wrap">
     
     <!-- Envelope Component -->
-    <div class="env-container" id="envBtn">
+    <div class="envelope-reveal" id="envContainer">
       <div class="envelope" id="envelope">
-        <div class="env-flap" id="envFlap"></div>
-        <div class="env-paper" id="envPaper">
-          <div class="paper-content">
-            <h3>For Rola 🌹</h3>
-            <p>Open me...</p>
-          </div>
+        <div class="envelope-flap" id="envFlap"></div>
+        <div class="envelope-body">
+          <span class="envelope-heart">💖</span>
         </div>
-        <div class="env-front"></div>
       </div>
-      <div class="click-hint">Click the envelope!</div>
+      <p class="open-hint" id="openHint">Click to open...</p>
     </div>
 
     <!-- Hidden Content that reveals after opening envelope -->
-    <div class="hero-content" id="heroContent">
-      <div class="badge reveal">✨ Special Surprise ✨</div>
+    <div class="hero-content hidden" id="heroContent">
+      <div class="hero-eyebrow reveal">✨ Special Surprise ✨</div>
       
-      <h1 class="title reveal">
+      <h1 class="hero-title reveal">
         To The Girl Who Stole<br/>
         <span class="gradient-text">My Heart 💖</span>
       </h1>
       
-      <p class="subtitle reveal">
+      <p class="hero-sub reveal">
         Every word here comes straight from my soul...<br/>
         I wanted to create something as beautiful and unique as you are.
       </p>
 
-      <div class="typewriter-box reveal">
-        <p id="typedText"></p>
+      <div class="typewriter-wrap reveal">
+        <span id="typedText"></span><span class="cursor-blink">|</span>
       </div>
 
-      <a href="page2.html" class="btn reveal">
-        Start The Journey
-        <span class="arrow">→</span>
-      </a>
+      <div class="hero-cta-row reveal" style="margin-top: 40px;">
+        <a href="page2.html" class="btn-primary">
+          Start The Journey →
+        </a>
+      </div>
     </div>
   </main>
 
   <script src="shared.js"></script>
   <script>
     // Page 1 Specific Logic
-    const envBtn = document.getElementById('envBtn');
+    const envContainer = document.getElementById('envContainer');
     const envelope = document.getElementById('envelope');
+    const envFlap = document.getElementById('envFlap');
+    const openHint = document.getElementById('openHint');
     const heroContent = document.getElementById('heroContent');
     const typedText = document.getElementById('typedText');
     
     let opened = false;
 
-    envBtn.addEventListener('click', () => {
+    envelope.addEventListener('click', () => {
       if (opened) return;
       opened = true;
       
-      // Animate Envelope
-      envelope.classList.add('open');
-      document.querySelector('.click-hint').style.opacity = 0;
+      // Animate Envelope Flap
+      envFlap.classList.add('open');
+      openHint.style.opacity = 0;
       
       // Burst hearts
-      for(let i=0; i<15; i++) {
+      for(let i=0; i<20; i++) {
         setTimeout(() => {
           const h = document.createElement('div');
           h.className = 'fheart';
           h.textContent = ['💖','🌹','✨','💕'][Math.floor(Math.random()*4)];
           h.style.left = `calc(50% + ${(Math.random()-0.5)*200}px)`;
-          h.style.top = `calc(40% + ${(Math.random()-0.5)*200}px)`;
+          h.style.top = `calc(50% + ${(Math.random()-0.5)*200}px)`;
           h.style.fontSize = (Math.random()*20 + 15) + 'px';
-          h.style.animation = 'fhRise 1.5s ease-out forwards';
+          h.style.animation = 'fheartRise 1.5s ease-out forwards';
           document.body.appendChild(h);
           setTimeout(() => h.remove(), 1500);
-        }, i*100);
+        }, i*80);
       }
 
       // Hide envelope & show content
       setTimeout(() => {
-        envBtn.style.opacity = 0;
-        envBtn.style.transform = 'scale(0.8) translateY(50px)';
+        envContainer.style.transition = 'all 0.6s ease';
+        envContainer.style.opacity = 0;
+        envContainer.style.transform = 'scale(0.8) translateY(50px)';
+        
         setTimeout(() => {
-          envBtn.style.display = 'none';
-          heroContent.classList.add('show');
+          envContainer.classList.add('hidden');
+          heroContent.classList.remove('hidden');
           
           // Trigger reveals manually since they are now visible
           setTimeout(() => {
-            document.querySelectorAll('#heroContent .reveal').forEach(el => el.classList.add('visible'));
-            startTypewriter();
+            document.querySelectorAll('#heroContent .reveal').forEach((el, index) => {
+              setTimeout(() => el.classList.add('visible'), index * 150);
+            });
+            setTimeout(startTypewriter, 800);
           }, 100);
 
-        }, 500);
+        }, 600);
       }, 1200);
     });
 
@@ -132,24 +141,27 @@
     let cIdx = 0;
     
     function startTypewriter() {
-      if (mIdx >= msgs.length) return;
+      if (mIdx >= msgs.length) {
+        document.querySelector('.cursor-blink').style.display = 'none';
+        return;
+      }
       
       const currentMsg = msgs[mIdx];
       
       if (cIdx < currentMsg.length) {
-        typedText.innerHTML += currentMsg.charAt(cIdx);
+        typedText.textContent += currentMsg.charAt(cIdx);
         cIdx++;
         setTimeout(startTypewriter, 50);
       } else {
         setTimeout(() => {
           if(mIdx < msgs.length - 1) {
-            typedText.innerHTML = '';
+            typedText.textContent = '';
             cIdx = 0;
             mIdx++;
             startTypewriter();
           } else {
-            // Keep the last message showing
-            typedText.style.borderRight = 'none';
+            // Finish
+            document.querySelector('.cursor-blink').style.display = 'none';
           }
         }, 1500);
       }
